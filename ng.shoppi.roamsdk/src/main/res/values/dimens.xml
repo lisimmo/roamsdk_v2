@@ -1,0 +1,21 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="buttons_corner_radius">16.0dip</dimen>
+    <dimen name="edittext_corner_radius">5dp</dimen>
+
+    <dimen name="radio_options_corner_radius">10dp</dimen>
+    <dimen name="maxEditboxWidth">200dp</dimen>
+
+    <!--Radio-->
+    <dimen name="radio_padding_left">10dp</dimen>
+    <dimen name="field_top_margin">10dp</dimen>
+    <dimen name="field_bottom_margin">15dp</dimen>
+    <dimen name="field_left_margin">5dp</dimen>
+    <dimen name="field_right_margin">5dp</dimen>
+
+    <dimen name="pix_grid_width">150dp</dimen>
+    <dimen name="pix_grid_height">150dp</dimen>
+</resources>

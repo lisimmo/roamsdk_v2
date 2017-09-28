@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#F37020</color>
+
+    <color name="buttonPressed">#c35400</color>
+    <color name="buttonUnPressed">#F37020</color>
+    <color name="buttonDisabled">#9999aa</color>
+
+    <color name="toolbar_background">#252525</color>
+
+    <color name="unselectedTab">#252525</color>
+    <color name="selectedTab">#353535</color>
+
+    <color name="textview_black">#000000</color>
+
+    <color name="optionUnpressed">#EEE</color>
+    <color name="optionPressed">#FFC081</color>
+
+    <color name="editTextBackground">#DFDFFF</color>
+    <color name="editViewHintColor">#777799</color>
+
+    <color name="viewDivider">#DDD</color>
+</resources>

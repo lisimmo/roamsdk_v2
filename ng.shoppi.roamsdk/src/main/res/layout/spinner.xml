@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/field_bottom_margin"
+    android:layout_marginTop="@dimen/field_top_margin"
+    android:orientation="vertical">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewLabel"
+            android:layout_width="0dp"
+            style="@style/FormFieldLabels"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.4"
+            android:text="Product Category"/>
+
+        <View
+            android:background="@color/viewDivider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+
+        <Spinner
+            android:id="@+id/spinnerView"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.6"/>
+
+    </LinearLayout>
+
+    <View
+        android:background="@color/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
+
+</LinearLayout>

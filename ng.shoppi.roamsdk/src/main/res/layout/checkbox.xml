@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/field_top_margin"
+    android:layout_marginBottom="@dimen/field_bottom_margin"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textViewLabel"
+        style="@style/FormFieldLabels"
+        android:layout_width="match_parent"
+        android:text="Category"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCheckboxes"
+        android:orientation="vertical"
+        android:paddingRight="@dimen/radio_padding_left"
+        android:paddingLeft="@dimen/radio_padding_left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
+
+</LinearLayout>
