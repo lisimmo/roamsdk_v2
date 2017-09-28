@@ -26,7 +26,7 @@ public class Form implements Serializable {
     private String formPrice = "";
 
     @SerializedName(value = "formCurrency", alternate = {"form_currency"})
-    private String formCurrency = "";
+    private String formCurrency = "₦";
 
     @SerializedName("description")
     private String description = "";
