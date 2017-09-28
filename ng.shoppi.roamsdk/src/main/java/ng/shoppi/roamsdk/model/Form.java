@@ -57,9 +57,23 @@ public class Form implements Serializable {
         this.id = id;
     }
 
+    public String getFormPrice() {
+        return formPrice;
+    }
 
+    public void setFormPrice(String formPrice) {
+        this.formPrice = formPrice;
+    }
 
-   /* public void getPagesFromUrl(final Roam.OnPagesResponseListener listener) {
+    public String getFormCurrency() {
+        return formCurrency;
+    }
+
+    public void setFormCurrency(String formCurrency) {
+        this.formCurrency = formCurrency;
+    }
+
+    /* public void getPagesFromUrl(final Roam.OnPagesResponseListener listener) {
 
         //Call<ArrayList<Form>> callGetForm = apiCalls.getForms(user_id);
         Call<ArrayList<Page>> callGetPages = Roam.apiCalls.getForms();
