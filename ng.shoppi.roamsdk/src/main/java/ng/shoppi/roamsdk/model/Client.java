@@ -1,3 +1,4 @@
+
 package ng.shoppi.roamsdk.model;
 
 import android.os.Parcel;
@@ -5,133 +6,144 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-/**
- * Created by Akinola on 12/21/2016.
- */
 @SuppressWarnings("unused")
-public class Client implements Serializable {
-    private long id;
-
-    @SerializedName("company_name")
-    private String companyName = "";
-
-    @SerializedName("company_logo")
-    private String companyLogo = "";
-
-    @SerializedName("first_name")
-    private String firstName = "";
-
-    @SerializedName("last_name")
-    private String lastName = "";
+public class Client implements Parcelable {
 
     @SerializedName("account_id")
-    private String account_id = "";
+    private String mAccountId = "";
 
-    //override
-    //private int clientLogoUrl;
-    private ArrayList<Form> forms = new ArrayList<>();
+    @SerializedName("company_logo")
+    private String mCompanyLogo;
 
-    public Client() {
+    @SerializedName("company_name")
+    private String mCompanyName = "";
+
+    @SerializedName("developer_account_id")
+    private String mDeveloperAccountId = "";
+
+    @SerializedName("email")
+    private String mEmail = "";
+
+    @SerializedName("first_name")
+    private String mFirstName = "";
+
+    @SerializedName("last_name")
+    private String mLastName = "";
+
+    @SerializedName("phone_number")
+    private String mPhoneNumber = "";
+
+    public String getAccountId() {
+        return mAccountId;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public ArrayList<Form> getForms() {
-        return forms;
-    }
-
-    public void setForms(ArrayList<Form> forms) {
-        this.forms = forms;
+    public void setAccountId(String accountId) {
+        mAccountId = accountId;
     }
 
     public String getCompanyLogo() {
-        return companyLogo;
+        return mCompanyLogo;
     }
 
     public void setCompanyLogo(String companyLogo) {
-        this.companyLogo = companyLogo;
+        mCompanyLogo = companyLogo;
     }
 
     public String getCompanyName() {
-        return companyName;
+        return mCompanyName;
     }
 
     public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+        mCompanyName = companyName;
+    }
+
+    public String getDeveloperAccountId() {
+        return mDeveloperAccountId;
+    }
+
+    public void setDeveloperAccountId(String developerAccountId) {
+        mDeveloperAccountId = developerAccountId;
+    }
+
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public void setEmail(String email) {
+        mEmail = email;
     }
 
     public String getFirstName() {
-        return firstName;
+        return mFirstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        mFirstName = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return mLastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        mLastName = lastName;
     }
 
-    public String getAccount_id() {
-        return account_id;
+    public String getPhoneNumber() {
+        return mPhoneNumber;
     }
 
-    public void setAccount_id(String account_id) {
-        this.account_id = account_id;
+    public void setPhoneNumber(String phoneNumber) {
+        mPhoneNumber = phoneNumber;
     }
 
     @Override
     public String toString() {
         return "Client{" +
-                "companyLogo='" + companyLogo + '\'' +
-                ", id=" + id +
-                ", companyName='" + companyName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", forms=" + forms +
+                "mAccountId='" + mAccountId + '\'' +
+                ", mCompanyLogo='" + mCompanyLogo + '\'' +
+                ", mCompanyName='" + mCompanyName + '\'' +
+                ", mDeveloperAccountId='" + mDeveloperAccountId + '\'' +
+                ", mEmail='" + mEmail + '\'' +
+                ", mFirstName='" + mFirstName + '\'' +
+                ", mLastName='" + mLastName + '\'' +
+                ", mPhoneNumber='" + mPhoneNumber + '\'' +
                 '}';
     }
 
-    /*@Override
+
+    @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(this.id);
-        dest.writeString(this.companyName);
-        dest.writeString(this.companyLogo);
-        dest.writeString(this.firstName);
-        dest.writeString(this.lastName);
-        dest.writeString(this.account_id);
-        //dest.writeTypedList(this.forms);
+        dest.writeString(this.mAccountId);
+        dest.writeString(this.mCompanyLogo);
+        dest.writeString(this.mCompanyName);
+        dest.writeString(this.mDeveloperAccountId);
+        dest.writeString(this.mEmail);
+        dest.writeString(this.mFirstName);
+        dest.writeString(this.mLastName);
+        dest.writeString(this.mPhoneNumber);
+    }
+
+    public Client() {
     }
 
     protected Client(Parcel in) {
-        this.id = in.readLong();
-        this.companyName = in.readString();
-        this.companyLogo = in.readString();
-        this.firstName = in.readString();
-        this.lastName = in.readString();
-        this.account_id = in.readString();
-        //this.forms = in.createTypedArrayList(Form.CREATOR);
+        this.mAccountId = in.readString();
+        this.mCompanyLogo = in.readString();
+        this.mCompanyName = in.readString();
+        this.mDeveloperAccountId = in.readString();
+        this.mEmail = in.readString();
+        this.mFirstName = in.readString();
+        this.mLastName = in.readString();
+        this.mPhoneNumber = in.readString();
     }
 
-    public static final Creator<Client> CREATOR = new Creator<Client>() {
+    public static final Parcelable.Creator<Client> CREATOR = new Parcelable.Creator<Client>() {
         @Override
         public Client createFromParcel(Parcel source) {
             return new Client(source);
@@ -141,5 +153,5 @@ public class Client implements Serializable {
         public Client[] newArray(int size) {
             return new Client[size];
         }
-    };*/
+    };
 }

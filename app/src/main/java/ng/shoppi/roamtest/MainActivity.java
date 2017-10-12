@@ -1,7 +1,7 @@
 package ng.shoppi.roamtest;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import ng.shoppi.roamsdk.Roam;
 import ng.shoppi.roamsdk.model.Client;
 import ng.shoppi.roamsdk.model.Form;
+import ng.shoppi.roamsdk.model.Job;
 import ng.shoppi.roamsdk.model.Location;
 import ng.shoppi.roamsdk.model.Page;
+import ng.shoppi.roamsdk.util.RoamSort;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 "OUw1Q08ifQ.Tv-eMcg_JJiGPTf0_m6GIzewLB5P-X5pLaix6UArmlI";
 
         String user_id = "Yinka";
+        String client_id = "Yinka";
 
         roam = Roam.initialize(MainActivity.this, access_token);
 
@@ -41,20 +44,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int code, ArrayList<Client> body) {
-                Log.e("Roam","Client Response code: "+code);
-                Log.e("Roam","Client Response code: "+body.toString());
+                Log.e("Roam", "Client Response code: " + code);
+                Log.e("Roam", "Client Response code: " + body.toString());
 
                 clients = body;
             }
 
             @Override
             public void onError(int code) {
-                Log.e("Roam","Client Response code: "+code);
+                Log.e("Roam", "Client Response code: " + code);
             }
 
             @Override
             public void onTimeOut() {
-                Log.e("Roam","Client Timeout");
+                Log.e("Roam", "Client Timeout");
             }
         });
 
@@ -63,18 +66,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int code, final ArrayList<Form> forms) {
-                Log.e("Roam","Forms Response code: "+code);
-                Log.e("Roam","Forms Response code: "+forms.toString());
+                Log.e("Roam", "Forms Response code: " + code);
+                Log.e("Roam", "Forms Response code: " + forms.toString());
 
-                if (forms.size()>0){
+                if (forms.size() > 0) {
 
                     roam.getPages(forms.get(0), new Roam.OnPagesResponseListener() {
                         @Override
                         public void onSuccess(int code, ArrayList<Page> pages) {
-                            Log.e("Roam","Pages Response code: "+code);
-                            Log.e("Roam","Pages Response code: "+pages.toString());
+                            Log.e("Roam", "Pages Response code: " + code);
+                            Log.e("Roam", "Pages Response code: " + pages.toString());
 
-                            roam.showForm(forms.get(0));
+                            //roam.showForm(forms.get(0));
                         }
 
                         @Override
@@ -114,106 +117,64 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onError(int code) {
-                Log.e("Roam","Forms Response code: "+code);
+                Log.e("Roam", "Forms Response code: " + code);
             }
 
             @Override
             public void onTimeOut() {
-                Log.e("Roam","Forms Timeout");
+                Log.e("Roam", "Forms Timeout");
+            }
+        });
+
+        roam.getJobs(user_id, client_id, new Roam.OnJobResponseListener() {
+            @Override
+            public void onSuccess(int code, ArrayList<Job> jobs) {
+                Log.e("Roam", "Jobs Response code: " + code);
+                Log.e("Roam", "Jobs Response code: " + jobs.toString());
+
+                RoamSort sort = new RoamSort();
+
+                sort.sortJobsByState(jobs, RoamSort.Sort.ASC);
+                System.out.println(jobs);
+
+                sort.sortJobsByWage(jobs, RoamSort.Sort.ASC);
+                System.out.println(jobs);
+
+                sort.sortJobsByTown(jobs, RoamSort.Sort.ASC);
+                System.out.println(jobs);
+            }
+
+            @Override
+            public void onError(int code) {
+                Log.e("Roam", "Jobs Response code: " + code);
+            }
+
+            @Override
+            public void onTimeOut() {
+                Log.e("Roam", "Jobs Timeout: ");
             }
         });
 
         //roam.showForm();
-
-
-
-
-        Form f = new Form();
-        f.setTitle("Jobberman");
-        f.setDescription("A form by Jobberman");
-        /*f.setFormContent("[\n" +
-                "\t{\n" +
-                "\t\t\"pageTitle\":\"Webshop's Information\",\n" +
-                "\t\t\"pageLayout\": [\n" +
-                "\t\t\t{\n" +
-                "                \"fieldValue\":\"\",\n" +
-                "                \"fieldType\":\"CAMERA\",\n" +
-                "                \"fieldName\":\"Webshop Logo\",\n" +
-                "                \"fieldId\":0\n" +
-                "            },\n" +
-                "            {\n" +
-                "                \"fieldValue\":\"\",\n" +
-                "                \"fieldHint\":\"Business Name\",\n" +
-                "                \"fieldType\":\"EDIT\",\n" +
-                "                \"fieldFormat\":\"text\",\n" +
-                "                \"fieldName\":\"Business Name\",\n" +
-                "                \"fieldId\":0\n" +
-                "            },\n" +
-                "            {\n" +
-                "                \"fieldValue\":\"\",\n" +
-                "                \"fieldHint\":\"Street Address\",\n" +
-                "                \"fieldType\":\"EDIT\",\n" +
-                "                \"fieldFormat\":\"text\",\n" +
-                "                \"fieldName\":\"Street Address\",\n" +
-                "                \"fieldId\":0\n" +
-                "            },\n" +
-                "            {\n" +
-                "                \"fieldValue\":\"\",\n" +
-                "                \"fieldHint\":\"Phone No\",\n" +
-                "                \"fieldType\":\"EDIT\",\n" +
-                "                \"fieldFormat\":\"phone\",\n" +
-                "                \"fieldName\":\"Phone Number\",\n" +
-                "                \"fieldId\":0\n" +
-                "            },\n" +
-                "            {\n" +
-                "                \"fieldValue\":\"\",\n" +
-                "                \"fieldHint\":\"Email Address\",\n" +
-                "                \"fieldType\":\"EDIT\",\n" +
-                "                \"fieldFormat\":\"email\",\n" +
-                "                \"fieldName\":\"Email Address\",\n" +
-                "                \"fieldId\":0\n" +
-                "            },\n" +
-                "            {\n" +
-                "                \"fieldValue\":\"\",\n" +
-                "                \"fieldHint\":\"Description\",\n" +
-                "                \"fieldType\":\"EDIT\",\n" +
-                "                \"fieldFormat\":\"text\",\n" +
-                "                \"fieldName\":\"Description of Webshop\",\n" +
-                "                \"fieldId\":0\n" +
-                "            },\n" +
-                "            {\n" +
-                "                \"fieldValue\":\"\",\n" +
-                "                \"fieldType\":\"BUTTON\",\n" +
-                "                \"fieldName\":\"Create Webshop\",\n" +
-                "                \"submitUrl\":\"http://www.google.com\",\n" +
-                "                \"fieldId\":0\n" +
-                "            }\n" +
-                "\t\t]\n" +
-                "\t}\n" +
-                "]");*/
-
-
-        //roam.showForm(f);
-
     }
 
-    private void  CheckIntoFormLocations(ArrayList<Form> forms){
-        for (Form form: forms) {
-            for (final Location location:form.getLocations()) {
+    private void CheckIntoFormLocations(ArrayList<Form> forms) {
+        for (Form form : forms) {
+            for (final Location location : form.getLocations()) {
                 roam.CheckIn(location, new Roam.OnCheckInResponseListener() {
                     @Override
                     public void onSuccess() {
-                        Log.e(TAG,"Success: "+location.getName());
+                        Log.e(TAG, "Success: " + location.getName());
                     }
 
                     @Override
                     public void onGPSError() {
-                        Log.e(TAG,"GPS ERROR");
+                        Log.e(TAG, "GPS ERROR");
                     }
 
                     @Override
                     public void onDistanceError(double distanceFromLocation, double checkableDistance, String units) {
-                        Log.e(TAG,"Distance ERROR: "+distanceFromLocation+units+" Checkable Distance: "+checkableDistance+units);
+                        Log.e(TAG, "Distance ERROR: " + distanceFromLocation + units + " Checkable Distance: " + checkableDistance + units);
                     }
                 });
             }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import ng.shoppi.roamsdk.model.Client;
 import ng.shoppi.roamsdk.model.Form;
+import ng.shoppi.roamsdk.model.Job;
 import ng.shoppi.roamsdk.model.Page;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -53,6 +54,10 @@ public interface ApiCalls {
 
     @GET("roam_test_forms.txt")
     Call<ArrayList<Form>> getForms();
+
+
+    @GET("roam_test_jobs.txt")
+    Call<ArrayList<Job>> getJobs();
 
 
     @GET("salesniper.txt")

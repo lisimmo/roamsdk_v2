@@ -21,6 +21,7 @@ import ng.shoppi.roamsdk.model.Edit;
 import ng.shoppi.roamsdk.model.Field;
 import ng.shoppi.roamsdk.model.FieldType;
 import ng.shoppi.roamsdk.model.Form;
+import ng.shoppi.roamsdk.model.Job;
 import ng.shoppi.roamsdk.model.MCamera;
 import ng.shoppi.roamsdk.model.Page;
 import ng.shoppi.roamsdk.model.Radio;
@@ -292,6 +293,35 @@ public class Roam {
     }
 
 
+
+    /**
+     * @param client_id : id of the client
+     * @param user_id   : The user's id
+     * @inheritDoc Gets the forms of a User by a Specific client.
+     */
+    public void getJobs(String user_id, String client_id, final OnJobResponseListener listener) {
+        Call<ArrayList<Job>> callGetJobs = apiCalls.getJobs();
+        callGetJobs.enqueue(new Callback<ArrayList<Job>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Job>> call, Response<ArrayList<Job>> response) {
+                int code = response.code();
+                if (code == 200) {
+                    ArrayList<Job> body = response.body();
+                    listener.onSuccess(code, body);
+                } else {
+                    listener.onError(code);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Job>> call, Throwable t) {
+                t.printStackTrace();
+                listener.onTimeOut();
+            }
+        });
+    }
+
+
     private void Decode(ArrayList<Page> body) {
         //JsonArray
 
@@ -355,6 +385,14 @@ public class Roam {
 
     public interface OnFormResponseListener {
         void onSuccess(int code, ArrayList<Form> forms);
+
+        void onError(int code);
+
+        void onTimeOut();
+    }
+
+    public interface OnJobResponseListener {
+        void onSuccess(int code, ArrayList<Job> jobs);
 
         void onError(int code);
 

@@ -8,28 +8,23 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import ng.shoppi.roamsdk.Roam;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 /**
  * Created by User on 12/21/2016.
  */
-public class Form implements Serializable {
+public class Form implements Serializable{
     private long id;
 
     @SerializedName("title")
     private String title = "";
 
-    @SerializedName(value = "formPrice", alternate = {"form_price"})
-    private String formPrice = "";
-
-    @SerializedName(value = "formCurrency", alternate = {"form_currency"})
-    private String formCurrency = "₦";
-
     @SerializedName("description")
     private String description = "";
+
+    @SerializedName("isPublished")
+    private boolean mIsPublished;
+
+    @SerializedName("client")
+    private Client mClient =  new Client();
 
     private ArrayList<Page> pages = new ArrayList<>();
 
@@ -56,49 +51,6 @@ public class Form implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
-
-    public String getFormPrice() {
-        return formPrice;
-    }
-
-    public void setFormPrice(String formPrice) {
-        this.formPrice = formPrice;
-    }
-
-    public String getFormCurrency() {
-        return formCurrency;
-    }
-
-    public void setFormCurrency(String formCurrency) {
-        this.formCurrency = formCurrency;
-    }
-
-    /* public void getPagesFromUrl(final Roam.OnPagesResponseListener listener) {
-
-        //Call<ArrayList<Form>> callGetForm = apiCalls.getForms(user_id);
-        Call<ArrayList<Page>> callGetPages = Roam.apiCalls.getForms();
-        callGetPages.enqueue(new Callback<ArrayList<Page>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Page>> call, Response<ArrayList<Page>> response) {
-                int code = response.code();
-                if (code == 200) {
-                    pages = response.body();
-
-                    listener.onSuccess(code, pages);
-                } else {
-                    listener.onError(code);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Page>> call, Throwable t) {
-                t.printStackTrace();
-                listener.onTimeOut();
-            }
-        });
-
-    }*/
-
 
 
     public ArrayList<Page> getPages() {
@@ -133,17 +85,32 @@ public class Form implements Serializable {
         this.locations = locations;
     }
 
+    public Client getClient() {
+        return mClient;
+    }
+
+    public void setClient(Client client) {
+        mClient = client;
+    }
+    public boolean getIsPublished() {
+        return mIsPublished;
+    }
+
+    public void setIsPublished(boolean isPublished) {
+        mIsPublished = isPublished;
+    }
+
     @Override
     public String toString() {
         return "Form{" +
-                "description='" + description + '\'' +
-                ", id=" + id +
+                "id=" + id +
                 ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", mIsPublished=" + mIsPublished +
+                ", mClient=" + mClient +
                 ", pages=" + pages +
                 ", geoLocked=" + geoLocked +
                 ", locations=" + locations +
                 '}';
     }
-
-
 }
