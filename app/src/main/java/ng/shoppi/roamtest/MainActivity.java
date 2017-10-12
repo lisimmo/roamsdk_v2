@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.e("Roam", "Pages Response code: " + code);
                             Log.e("Roam", "Pages Response code: " + pages.toString());
 
-                            //roam.showForm(forms.get(0));
+                            roam.showForm(forms.get(0));
                         }
 
                         @Override

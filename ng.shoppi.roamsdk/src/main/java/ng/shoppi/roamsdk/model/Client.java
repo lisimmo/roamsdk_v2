@@ -6,8 +6,10 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 @SuppressWarnings("unused")
-public class Client implements Parcelable {
+public class Client implements Serializable {
 
     @SerializedName("account_id")
     private String mAccountId = "";
@@ -111,47 +113,4 @@ public class Client implements Parcelable {
                 '}';
     }
 
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.mAccountId);
-        dest.writeString(this.mCompanyLogo);
-        dest.writeString(this.mCompanyName);
-        dest.writeString(this.mDeveloperAccountId);
-        dest.writeString(this.mEmail);
-        dest.writeString(this.mFirstName);
-        dest.writeString(this.mLastName);
-        dest.writeString(this.mPhoneNumber);
-    }
-
-    public Client() {
-    }
-
-    protected Client(Parcel in) {
-        this.mAccountId = in.readString();
-        this.mCompanyLogo = in.readString();
-        this.mCompanyName = in.readString();
-        this.mDeveloperAccountId = in.readString();
-        this.mEmail = in.readString();
-        this.mFirstName = in.readString();
-        this.mLastName = in.readString();
-        this.mPhoneNumber = in.readString();
-    }
-
-    public static final Parcelable.Creator<Client> CREATOR = new Parcelable.Creator<Client>() {
-        @Override
-        public Client createFromParcel(Parcel source) {
-            return new Client(source);
-        }
-
-        @Override
-        public Client[] newArray(int size) {
-            return new Client[size];
-        }
-    };
 }
